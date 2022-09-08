@@ -1,5 +1,5 @@
 {
-  "type":"module",
+  "type": "module",
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/RomanHuBoss/frontend-project-44/workflows/hexlet-check/badge.svg)](https://github.com/RomanHuBoss/frontend-project-44/actions)",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/RomanHuBoss/frontend-project-44/issues"
   },
-  "homepage": "https://github.com/RomanHuBoss/frontend-project-44#readme"
+  "homepage": "https://github.com/RomanHuBoss/frontend-project-44#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
