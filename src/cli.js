@@ -10,5 +10,4 @@ const greetings = () => {
     return name;
 };
 
-
 export default greetings;
