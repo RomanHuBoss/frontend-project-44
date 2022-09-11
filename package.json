@@ -6,7 +6,8 @@
   "main": "index.js",
   "bin": {
     "brain-games": "bin/brain-games.js",
-    "brain-even": "bin/brain-even.js"
+    "brain-even": "bin/brain-even.js",
+    "brain-calc": "bin/brain-calc.js"
   },
   "engines": {
     "node": ">=14"
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/RomanHuBoss/frontend-project-44#readme",
   "dependencies": {
+    "brain-even": "^1.0.0",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
