@@ -4,5 +4,6 @@
 ### Project Maintainability
 [![Maintainability](https://api.codeclimate.com/v1/badges/d7b79df4d52d19f87e88/maintainability)](https://codeclimate.com/github/RomanHuBoss/frontend-project-44/maintainability)
 
-### Asciinema online
-https://asciinema.org/a/skS52wjJNE7AhaiqzcdBSyvWQ
+### Asciinemas online
+Brain-Even Game https://asciinema.org/a/skS52wjJNE7AhaiqzcdBSyvWQ
+Brain-Calc Game https://asciinema.org/a/eYN4ml0yK3mBIQXsAagEoli3P
