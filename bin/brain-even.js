@@ -9,7 +9,7 @@ class BrainEvenGame extends Game {
         this.gameIntro = 'Answer "yes" if the number is even, otherwise answer "no".';
     }
 
-    _generateQuestionAndAnswer() {
+    generateQuestionAndAnswer() {
         const number = getRandomInt(1, 100);
 
         this.questionPostfix = number;
