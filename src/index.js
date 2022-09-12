@@ -48,6 +48,7 @@ export class Game {
             this.isFinished = true;
         }
         else {
+            console.log(`Correct!`);
             this.correctAnswersQuantity += 1;
         }
     }
