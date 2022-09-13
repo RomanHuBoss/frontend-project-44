@@ -10,3 +10,5 @@ Brain-Even Game https://asciinema.org/a/1JKGnScwmG4A7zsvrldj35vaD
 Brain-Calc Game https://asciinema.org/a/MKOOn3PHAsqsQy8Lt6csDFggR
 
 Brain-GCD Game https://asciinema.org/a/Ip15dGnUYE50swidvYKqSBFxW
+
+Brain-Progression Game https://asciinema.org/a/QbMhE81Q0H2TlY51wAXZnfL9c
