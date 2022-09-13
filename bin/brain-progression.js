@@ -26,7 +26,7 @@ class BrainProgressionGame extends Game {
 
             if (i === index2Hide) {
                 this.correctAnswer = String(elem);
-                this.questionPostfix += '...';
+                this.questionPostfix += '..';
             } else {
                 this.questionPostfix += elem;
             }
