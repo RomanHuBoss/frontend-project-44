@@ -22,7 +22,7 @@ class BrainPrimeGame extends Game {
         const number = getRandomInt(1, 1000);
 
         this.questionPostfix = number;
-        this.correctAnswer = (BrainPrimeGame.#isPrime(number) % 2) === 0 ? 'yes' : 'no';
+        this.correctAnswer = BrainPrimeGame.#isPrime(number) ? 'yes' : 'no';
     }
 }
 
