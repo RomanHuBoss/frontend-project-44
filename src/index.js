@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable no-underscore-dangle */
 
 import readlineSync from 'readline-sync';
 import { askPlayerName, sayWelcome } from './cli.js';
