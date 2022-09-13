@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
-import { askPlayerName, sayWelcome } from './cli.js';
+import { askPlayerName, sayWelcome, sayHello } from './cli.js';
 
 export default class Game {
     static #maxRoundsQuantity = 3;
@@ -25,7 +25,7 @@ export default class Game {
     start() {
         sayWelcome();
         this.#playerName = askPlayerName();
-        this.#sayHello();
+        sayHello(this.#playerName);
         this.#showGameIntro();
 
         while (!this.#isFinished && this.#currentRound < Game.#maxRoundsQuantity) {
@@ -66,10 +66,6 @@ export default class Game {
         if (this.#correctAnswersQuantity === Game.#maxRoundsQuantity) {
             this.#sayCongratulations();
         }
-    }
-
-    #sayHello() {
-        console.log(`Hello, ${this.#playerName}!`);
     }
 
     #showGameIntro() {

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
-import { sayWelcome } from '../src/cli.js';
+import { sayWelcome, askPlayerName, sayHello } from '../src/cli.js';
 
 sayWelcome();
+sayHello(askPlayerName());
