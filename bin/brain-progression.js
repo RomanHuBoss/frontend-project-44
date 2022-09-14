@@ -3,35 +3,31 @@
 import Game from '../src/index.js';
 import { getRandomInt } from '../src/cli.js';
 
-class BrainProgressionGame extends Game {
-    constructor() {
-        super();
-        this.gameIntro = 'What number is missing in the progression?';
-    }
-
-    generateQuestionAndAnswer() {
+Game({
+    gameIntro: 'What number is missing in the progression?',
+    generator: () => {
         const firstNumber = getRandomInt(1, 100);
         const progressionLength = getRandomInt(5, 20);
         const index2Hide = getRandomInt(0, progressionLength - 1);
         const progressionStep = getRandomInt(1, 10);
 
-        this.questionPostfix = '';
+        const result = {};
+        result.questionPostfix = '';
 
         for (let i = 0; i < progressionLength; i += 1) {
             if (i > 0) {
-                this.questionPostfix += ' ';
+                result.questionPostfix += ' ';
             }
 
             const elem = firstNumber + i * progressionStep;
 
             if (i === index2Hide) {
-                this.correctAnswer = String(elem);
-                this.questionPostfix += '..';
+                result.correctAnswer = String(elem);
+                result.questionPostfix += '..';
             } else {
-                this.questionPostfix += elem;
+                result.questionPostfix += elem;
             }
         }
-    }
-}
-
-new BrainProgressionGame().start();
+        return result;
+    },
+});

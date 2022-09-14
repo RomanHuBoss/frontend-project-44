@@ -3,15 +3,14 @@
 import Game from '../src/index.js';
 import { getRandomInt } from '../src/cli.js';
 
-class BrainGcdGame extends Game {
-    constructor() {
-        super();
-        this.gameIntro = 'Find the greatest common divisor of given numbers.';
-    }
+Game({
+    gameIntro: 'Find the greatest common divisor of given numbers.',
+    generator: () => {
+        let firstNumber = getRandomInt(1, 100);
+        let secondNumber = getRandomInt(1, 100);
 
-    static #getGcd(first, second) {
-        let firstNumber = first;
-        let secondNumber = second;
+        const result = {};
+        result.questionPostfix = `${firstNumber} ${secondNumber}`;
 
         while (firstNumber && secondNumber) {
             if (firstNumber > secondNumber) {
@@ -20,17 +19,9 @@ class BrainGcdGame extends Game {
                 secondNumber %= firstNumber;
             }
         }
-        return firstNumber + secondNumber;
-    }
 
-    generateQuestionAndAnswer() {
-        const firstNumber = getRandomInt(1, 100);
-        const secondNumber = getRandomInt(1, 100);
+        result.correctAnswer = String(firstNumber + secondNumber);
 
-        this.questionPostfix = `${firstNumber} ${secondNumber}`;
-
-        this.correctAnswer = String(BrainGcdGame.#getGcd(firstNumber, secondNumber));
-    }
-}
-
-new BrainGcdGame().start();
+        return result;
+    },
+});

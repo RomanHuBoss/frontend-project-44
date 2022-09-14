@@ -3,28 +3,25 @@
 import Game from '../src/index.js';
 import { getRandomInt } from '../src/cli.js';
 
-class BrainCalcGame extends Game {
-    constructor() {
-        super();
-        this.gameIntro = 'What is the result of the expression?';
-    }
-
-    generateQuestionAndAnswer() {
+Game({
+    gameIntro: 'What is the result of the expression?',
+    generator: () => {
         const operations = ['+', '-', '*'];
         const firstNumber = getRandomInt(1, 100);
         const secondNumber = getRandomInt(1, 100);
         const operation = operations[getRandomInt(0, 2)];
 
-        this.questionPostfix = `${firstNumber} ${operation} ${secondNumber}`;
+        const result = {};
+        result.questionPostfix = `${firstNumber} ${operation} ${secondNumber}`;
 
         if (operation === '+') {
-            this.correctAnswer = String(firstNumber + secondNumber);
+            result.correctAnswer = String(firstNumber + secondNumber);
         } else if (operation === '-') {
-            this.correctAnswer = String(firstNumber - secondNumber);
+            result.correctAnswer = String(firstNumber - secondNumber);
         } else if (operation === '*') {
-            this.correctAnswer = String(firstNumber * secondNumber);
+            result.correctAnswer = String(firstNumber * secondNumber);
         }
-    }
-}
 
-new BrainCalcGame().start();
+        return result;
+    },
+});

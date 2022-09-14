@@ -3,88 +3,86 @@
 import readlineSync from 'readline-sync';
 import { askPlayerName, sayWelcome, sayHello } from './cli.js';
 
-export default class Game {
-    static #maxRoundsQuantity = 3;
+const Game = (params) => {
+    const maxRoundsQuantity = 3;
+    const { gameIntro, generator } = params;
 
-    #playerName = null;
+    let playerName = null;
+    let currentRound = null;
+    let correctAnswersQuantity = 0;
+    let isFinished = false;
+    let questionPostfix = null;
+    let correctAnswer = null;
+    let currentAnswer = null;
 
-    #currentRound = 0;
+    const showGameIntro = () => {
+        console.log(gameIntro);
+    };
 
-    #correctAnswersQuantity = 0;
+    const showQuestion = () => {
+        console.log(`Question: ${questionPostfix}`);
+    };
 
-    #currentAnswer = null;
+    const getCurrentAnswer = () => {
+        currentAnswer = readlineSync.question('Your answer: ');
+    };
 
-    #isFinished = false;
+    const sayWrongAnswer = () => {
+        console.log(`'${currentAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+    };
 
-    gameIntro = null;
+    const sayTryAgain = () => {
+        console.log(`Let's try again, ${playerName}!`);
+    };
 
-    questionPostfix = null;
-
-    correctAnswer = null;
-
-    start() {
-        sayWelcome();
-        this.#playerName = askPlayerName();
-        sayHello(this.#playerName);
-        this.#showGameIntro();
-
-        while (!this.#isFinished && this.#currentRound < Game.#maxRoundsQuantity) {
-            this.#nextRound();
-        }
-
-        this.#finish();
-    }
-
-    #nextRound() {
-        this.generateQuestionAndAnswer();
-        this.#showQuestion();
-        this.#getCurrentAnswer();
-        this.#estimateAnswer();
-        this.#currentRound += 1;
-    }
-
-    #estimateAnswer() {
-        if (this.#currentAnswer !== this.correctAnswer) {
-            this.#isFinished = true;
-            this.#sayWrongAnswer();
-            this.#sayTryAgain();
-        } else {
-            this.#correctAnswersQuantity += 1;
-            Game.#sayCorrectAnswer();
-        }
-    }
-
-    #showQuestion() {
-        console.log(`Question: ${this.questionPostfix}`);
-    }
-
-    #getCurrentAnswer() {
-        this.#currentAnswer = readlineSync.question('Your answer: ');
-    }
-
-    #finish() {
-        if (this.#correctAnswersQuantity === Game.#maxRoundsQuantity) {
-            this.#sayCongratulations();
-        }
-    }
-
-    #showGameIntro() {
-        console.log(this.gameIntro);
-    }
-
-    #sayCongratulations() {
-        console.log(`Congratulations, ${this.#playerName}!`);
-    }
-
-    #sayWrongAnswer() {
-        console.log(`'${this.#currentAnswer}' is wrong answer ;(. Correct answer was '${this.correctAnswer}'.`);
-    }
-
-    static #sayCorrectAnswer() {
+    const sayCorrectAnswer = () => {
         console.log('Correct!');
-    }
+    };
 
-    #sayTryAgain() {
-        console.log(`Let's try again, ${this.#playerName}!`);
-    }
-}
+    const estimateAnswer = () => {
+        if (currentAnswer !== correctAnswer) {
+            isFinished = true;
+            sayWrongAnswer();
+            sayTryAgain();
+        } else {
+            correctAnswersQuantity += 1;
+            sayCorrectAnswer();
+        }
+    };
+
+    const nextRound = () => {
+        ({ questionPostfix, correctAnswer } = generator());
+
+        showQuestion();
+        getCurrentAnswer();
+        estimateAnswer();
+        currentRound += 1;
+    };
+
+    const sayCongratulations = () => {
+        console.log(`Congratulations, ${playerName}!`);
+    };
+
+    const finish = () => {
+        if (correctAnswersQuantity === maxRoundsQuantity) {
+            sayCongratulations();
+        }
+    };
+
+    const start = () => {
+        sayWelcome();
+        playerName = askPlayerName();
+        sayHello(playerName);
+        showGameIntro();
+
+        while (!isFinished && currentRound < maxRoundsQuantity) {
+            nextRound();
+        }
+
+        finish();
+    };
+
+    start();
+};
+
+export default Game;
